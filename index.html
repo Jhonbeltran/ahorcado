@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Ahorcado</title>
+	<link rel="stylesheet" type="text/css" href="estilos.css">
 	<script type="text/javascript" src="ahorcado.js"></script>
 </head>
 <body>
@@ -15,6 +16,9 @@
 	<h2 id="pista">_ _ _</h2>
 	<!-- el tamaño por defecto de un canvas es de 300 x 150 -->
 	<canvas width="500" height="502" id="canvas"></canvas>
+	<div>
+		<input  type="button" onclick="document.location.reload();" value="Volver a Intentar">
+	</div>
 	<script type="text/javascript">
 	iniciar();
 	</script>

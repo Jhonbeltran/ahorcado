@@ -1,6 +1,15 @@
 //Elijan de un array de palabras aleatorio
 // variables globales
-var palabra = "Guardia";
+//palabra es un objeto de tipo String
+function seleccionPalabra(minimo, maximo)
+{
+	var numero = Math.floor( Math.random() * (maximo - minimo + 1) + minimo );
+	return numero;
+}
+
+var opciones = ["Guardia", "Snow", "Stark", "Aria", "Olly", "Ned", "Kingslanding"]
+var opcionMaquina = seleccionPalabra(0,3);
+var palabra = opciones[opcionMaquina];
 var hombre, l, espacio;
 
 //Declaración de la clase Ahorcado (recibe como parametro contexto)
@@ -173,27 +182,36 @@ function iniciar ()
 
 	//Convierte a mayúscula un texto
 	palabra = palabra.toUpperCase();
+	//Para minusculas es .toLowerCase
 
 	//Declaro un array con n espacios de acuerdo al largo de la palabra
+	//Length es una variable no una funcion
 	espacio = new Array(palabra.length);
 	
 	//Agregamos una función que se dispare al dar click al botón
 	b.addEventListener("click", agregarLetra);
-
+	//Para mostrar la pista desde el inicio
 	mostrarPista(espacio);
 
 }
 function agregarLetra()
 {
+	//Usamos una variable global dentro de nuestro algoritmo
+	//l.value nos trae lo que insertemos en el campo de texto
 	var letra = l.value;
+	//Esto es para que el cuadro de texto se limpie :)
 	l.value = "";
+	//Esta funcion tiene toda la logica del ahorcado
 	mostrarPalabra(palabra, hombre, letra);
 }
-function mostrarPalabra(palabra, ahorcado, letra)
+
+function mostrarPalabra(palabra, hombre, letra)
 {
 	var encontrado = false;
 	var p;
 	letra = letra.toUpperCase();
+	//Miren un ciclo in :)
+	//Esto empieza letra por letra para ver si existe o no existe en la palabra
 	for(p in palabra)
 	{	
 		if(letra == palabra[p])
@@ -203,16 +221,21 @@ function mostrarPalabra(palabra, ahorcado, letra)
 		}
 	}
 	mostrarPista(espacio);
+	/*if (mostrarPista(espacio)==mostrarPista(palabra)) {
+		alert("Ganaste");
+	}*/
 
 	//Si NO lo encontré
 	if(!encontrado)
 	{
-		ahorcado.trazar();
+		hombre.trazar();
 	}
 
-	if(!ahorcado.vivo)
+	if(!hombre.vivo)
 	{
-		//Mostrar la palabra entera al morir
+		//Y esto es lo que debo hacer para que me muestre la palabra cuando muera
+		//Cool!
+		mostrarPista(palabra);
 	}
 
 }
@@ -224,9 +247,11 @@ function mostrarPista(espacio)
 	var largo = espacio.length;
 
 	for(i = 0; i<largo; i++)
-	{
+	{	
+		//Mientras NO sea undefined
 		if(espacio[i] != undefined)
 		{
+			//si entrá acá significa que hay una letra :O
 			texto = texto + espacio[i] + " ";
 		}
 		else
