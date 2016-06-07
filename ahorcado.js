@@ -162,6 +162,7 @@ Ahorcado.prototype.trazar = function ()
 		// Acá nos morimos muertos de la muerte
 		this.vivo = false;
 		alert("¡Estás muerto!");
+		b.disabled= true;
 	}
 	this.dibujar();
 }
